@@ -6,17 +6,13 @@ STOP_WORDS = [
     'will', 'with'
 ]
 
-# open text file
 
-
-def open_file(file):
+def open_file(file):  # open text file
     with open(file) as file:
         return file.read()
 
-# remove punctuation iterates through text file and stores each string into char to evaluate for instance of punctuation. If none, passes string into punctLess
 
-
-def remove_punctuation(file):
+def remove_punctuation(file):  # remove punctuation iterates through text file and stores each string into char to evaluate for instance of punctuation. If none, passes string into punctLess
     punctLess = ""
     punctuations = '''!()-[]{};:'"\,<>./?@#$%^&*_~'''
     for char in file:
@@ -24,17 +20,13 @@ def remove_punctuation(file):
             punctLess += char
     return punctLess
 
-# transform text file to lowercase
 
-
-def lowercase_and_split(file):
+def lowercase_and_split(file):  # transform text file to lowercase
     x = file.lower().split(" ")
     return x
 
-# remove stop words
 
-
-def removeSW(file):
+def removeSW(file):  # remove stop words
     sw_removed = []
     i = 0
     while i < len(file):
@@ -43,24 +35,20 @@ def removeSW(file):
         i += 1
     return sw_removed
 
-# count and sort file
 
-
-def countSort(file):
+def countSort(file):  # count and sort file
     cWords = dict(Counter(file))
     cWords = {k: v for k, v in sorted(
         cWords.items(), key=lambda item: item[1], reverse=True)}
     return cWords
 
 
-# make a dictionary
-def render_dict(file):
+def render_dict(file):  # make a dictionary
     for word, num in file.items():
         print(f"{word} | {num} " + num * "*")
 
 
-# display word frequency
-def print_word_freq(file):
+def print_word_freq(file):  # display word frequency
     print(f"Instances of word in: {file}")
     text = open_file(file)
     text = remove_punctuation(text)
@@ -70,12 +58,11 @@ def print_word_freq(file):
     render_dict(text)
 
 
-# print text files
-print_word_freq('seneca_falls.txt')
+print_word_freq('seneca_falls.txt')  # print text files
 print_word_freq('emancipation_proclamation.txt')
 
-# don't understand this if stmt
-if __name__ == "__main__":
+
+if __name__ == "__main__":  # don't understand this if stmt
     import argparse
     from pathlib import Path
 
